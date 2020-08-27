@@ -1,11 +1,14 @@
 import { Request, Response } from 'express';
 import mockjs from 'mockjs';
+import { testURL } from 'jest.config';
 
 const getMemberList = (req: Request, res: Response) => {
   res.json({
+    status:201,
+    success: true,
     data: mockjs.mock({
       pageSize: 20,
-      totalNum: 100,
+      totalPage: 100,
       currentPage: 1,
       'rows|20': [
         {
@@ -22,7 +25,5 @@ const getMemberList = (req: Request, res: Response) => {
 };
 
 export default {
-  '/api/member': {
-    '/list': getMemberList,
-  },
+  'POST /api/member/list': getMemberList
 };
